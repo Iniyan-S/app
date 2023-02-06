@@ -1,0 +1,17 @@
+# BASE IMAGE
+FROM node:18-alpine
+
+# CHANGE DIR
+WORKDIR /app
+
+# COPY FROM LOCAL TO IMAGE
+COPY . .
+
+# RUN DEPENDENCY COMMAND
+RUN yarn install --production
+
+# HOST/RUN THE APPLICATION
+CMD ["node", "src/index.js"]
+
+# EXPOSE
+EXPOSE 3000
