@@ -1,8 +1,9 @@
 version: 3.8
 
 services:
-  app:
+  my-node-app:
     image: node:18-alpine
+    #build: .
     command: sh -c "yarn install && yarn run dev"
     ports:
       - 3000:3000
@@ -16,6 +17,8 @@ services:
       MYSQL_DB: todos
     networks:
       - my-node-app
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:8.0
@@ -29,7 +32,9 @@ services:
 
 volumes:
   todo-mysql-data:
+    name: todo-mysql-data
 
 networks:
   my-node-app:
+    name: my-node-app
     driver: bridge
