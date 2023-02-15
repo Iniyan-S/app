@@ -1,0 +1,17 @@
+services: 
+  app:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "yarn install && node app.js"
+
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    ports:
+      - 80:3000
