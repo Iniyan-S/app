@@ -5,8 +5,8 @@ services:
     image: node:18-alpine
     #build: .
     command: sh -c "yarn install && yarn run dev"
-    ports:
-      - 3000:3000
+    #ports:
+      #- 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
